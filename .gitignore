@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+
+# Logs
+*.log
+
+# Secrets (safety)
+*.env
+*.secret

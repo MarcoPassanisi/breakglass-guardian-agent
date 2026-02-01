@@ -1,0 +1,76 @@
+{
+    "policies_evaluated": 4,
+    "compliant_policies": 1,
+    "non_compliant_policies": 1,
+    "at_risk_policies": 2,
+    "evaluation_mode": "provided",
+    "break_glass_upns": [
+        "breakglass1@contoso.com",
+        "breakglass2@contoso.com"
+    ],
+    "min_exclusions_required": 2,
+    "policy_assessment": [
+        {
+            "policy_name": "CA-01 - Legacy Auth Blocking",
+            "state": "enabled",
+            "effective_excluded_users": [
+                "breakglass1@contoso.com"
+            ],
+            "matched_break_glass_count": 1,
+            "status": "Non-Compliant",
+            "reason": "Fewer than 2 break-glass accounts excluded (minimum required: 2)"
+        },
+        {
+            "policy_name": "CA-02 - MFA for Privileged Users",
+            "state": "enabledForReportingButNotEnforced",
+            "effective_excluded_users": [
+                "breakglass1@contoso.com",
+                "breakglass2@contoso.com"
+            ],
+            "matched_break_glass_count": 2,
+            "status": "Compliant",
+            "reason": "Meets minimum break-glass exclusion requirement"
+        },
+        {
+            "policy_name": "CA-03 - MFA for Risky Sign-ins",
+            "state": "disabled",
+            "effective_excluded_users": [
+                "breakglass1@contoso.com"
+            ],
+            "matched_break_glass_count": 1,
+            "status": "At-Risk",
+            "reason": "Policy is disabled but would be non-compliant if enabled (fewer than 2 exclusions)"
+        },
+        {
+            "policy_name": "CA-04 - Password Change for High-Risk Users",
+            "state": "disabled",
+            "effective_excluded_users": [
+                "breakglass1@contoso.com"
+            ],
+            "matched_break_glass_count": 1,
+            "status": "At-Risk",
+            "reason": "Policy is disabled but would be non-compliant if enabled (fewer than 2 exclusions)"
+        }
+    ],
+    "break_glass_sign_in_activity": [
+        {
+            "upn": "breakglass1@contoso.com",
+            "last_sign_in": "2026-01-31T10:00:00Z",
+            "days_since_last_sign_in": 1,
+            "activity_status": "Recent"
+        },
+        {
+            "upn": "breakglass2@contoso.com",
+            "last_sign_in": "2026-01-30T08:30:00Z",
+            "days_since_last_sign_in": 2,
+            "activity_status": "Recent"
+        }
+    ],
+    "limitations": [
+        "Sample output has been anonymized (UPNs and policy names).",
+        "Disabled policies are included in the assessment as requested.",
+        "No group or role-based exclusions were present; only direct user exclusions were evaluated.",
+        "Sign-in activity is limited to the last 7 days as specified.",
+        "Nested group membership and external break-glass accounts (if any) are not evaluated."
+    ]
+}
